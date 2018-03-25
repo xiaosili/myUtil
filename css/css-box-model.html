@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CSS盒模型</title>
+    <style>
+    html * {
+        margin: 0;
+        padding: 0;
+    }
+
+    section {
+        margin-bottom: 10px;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- 父容器高度，创建BFC后，变为110px -->
+    <!-- 解决父子元素margin-top重叠问题 1，给父元素overflow：hidden; 2，父元素设置border-top 或者 padding-top 3，父子元素间加入内联元素 -->
+    <section class="box" id="sec">
+        <style>
+        #sec {
+            background: red;
+            overflow: auto;
+        }
+
+        .child {
+            height: 100px;
+            margin-top: 10px;
+            background: yellow
+        }
+        </style>
+        <article class="child"></article>
+    </section>
+
+    <!-- 空元素上下边距重叠 -->
+    <section id="empty">
+      <style>
+        #empty {
+          background-color: red;
+          overflow: hidden;
+        }
+        #empty div {
+          margin-top: 50px;
+          margin-bottom: 100px;
+        }
+
+      </style>
+      <div></div>
+    </section>
+
+
+    <!-- BFC内部元素垂直方向边距重叠 -->
+    <section id="margin">
+        <style>
+        #margin {
+            background: pink;
+            overflow: auto;
+        }
+
+        #margin p {
+            margin: 5px auto 25px;
+            background: red;
+        }
+        </style>
+        <p>1</p>
+        <!-- 创建BFC -->
+        <div style="overflow:auto;background-color: yellow;">
+            <p>2</p>
+        </div>
+        <p>3</p>
+    </section>
+
+
+    <!-- BFC不与float重叠 -->
+    <section id="layout">
+        <style>
+        #layout {
+            background: red;
+        }
+
+        #layout .left {
+            float: left;
+            width: 100px;
+            height: 100px;
+            background: pink;
+        }
+
+        #layout .right {
+            height: 110px;
+            background: yellow;
+            overflow: auto;
+        }
+        </style>
+        <div class="left"></div>
+        <div class="right"></div>
+    </section>
+
+    
+    <!-- BFC子元素即使是float也会参与计算 -->
+    <section id="float">
+        <style>
+        #float {
+            background: red;
+            overflow: auto;
+            /*float: left;*/
+        }
+
+        #float .float {
+            float: left;
+            font-size: 30px;
+        }
+        </style>
+        <div class="float">我是浮动元素</div>
+    </section>
+    <pre style="padding-left: 10px;">
+css盒模型：标准模型+IE模型
+
+标准模型和IE模型区别（计算高度和宽度的不同）
+
+CSS如何设置两种盒模型
+box-sizing: content-box;（标准模型-默认）
+box-sizing: border-box;（IE模型）
+
+JS如何设置获取盒模型对应的宽和高
+dom.style.width/height （只能获取dom节点的内联属性的值，不太准确,如style='width:50px'）
+dom.currentStyle.width/height (即时渲染结果，相对准确，但是只有IE支持）
+window.getComputedStyle(dom).width/height（只读属性，通用型更好）
+dom.getBoundingClientRect().width/height（只读属性，x,y,left.top,width,height，通常用于计算元素的绝对位置，相对于视口）
+
+BFC-块级格式化上下文
+
+BFC原理（渲染规则）
+1，BFC在页面上是一个独立的容器，外面的元素不会影响内部的元素，内部也不会影响外部的元素
+2，内部的Box会在垂直方向，一个接一个地放置
+3，在BFC中，每一个盒子的左外边缘（margin-left）会触碰到容器的左边缘(border-left)（对于从右到左的格式来说，则触碰到右边缘），即使存在浮动也是如此
+4，在BFC内部的元素垂直方向的边距会发生重叠
+5，BFC区域不会与浮动的元素的box重叠
+6，计算BFC元素高度时，浮动元素也会参与计算
+
+如何创建BFC
+1.根元素(整个页面就是一个大的BFC)
+2.float属性不为none
+3.position为absolute或fixed
+4.display为inline-block, table-cell, table-caption, flex, inline-flex
+5.overflow不为visible
+
+BFC使用场景
+1，解决边距重叠（父元素和子元素垂直方向边距重叠+兄弟元素边距重叠+空元素上下边距重叠）
+2，页面布局
+3，清除浮动
+    </pre>
+</body>
+
+</html>
