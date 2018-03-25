@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+    <title>grid</title>
+    <style>
+    html * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .wrap {
+        display: grid;
+        width: 100%;
+        grid-template-rows: 100px;
+        grid-template-columns: auto 100px;
+    }
+
+    .left {
+        background-color: yellow;
+        overflow: auto;
+    }
+
+    .right {
+        background-color: red;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="left">
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+        </div>
+        <div class="right"></div>
+    </div>
+</body>
+
+</html>

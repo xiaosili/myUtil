@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+    <title>grid</title>
+    <style>
+    html * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html,
+    body {
+        height: 100%;
+    }
+
+    .wrap {
+        display: grid;
+        height: 100%;
+        grid-template-rows: 100px auto 100px;
+        grid-template-columns: 100%;
+    }
+
+    .header {
+        line-height: 100px;
+        background-color: red;
+    }
+
+    .main {
+        background-color: yellow;
+        overflow: auto;
+    }
+
+    .footer {
+        line-height: 100px;
+        background-color: blue;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="header">头部</div>
+        <div class="main">
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+        </div>
+        <div class="footer">底部</div>
+    </div>
+</body>
+
+</html>

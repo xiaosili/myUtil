@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+    <title>absolute-or-fixed</title>
+    <style>
+    html * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .wrap {
+        position: relative;
+    }
+
+    .wrap div {
+        min-height: 200px;
+    }
+
+    .left {
+        position: absolute;
+        /*position: fixed;*/
+        left: 0;
+        right: 100px;
+        background-color: yellow;
+    }
+
+    .right {
+        position: absolute;
+        /*position: fixed;*/
+        width: 100px;
+        right: 0;
+        top: 0;
+        background-color: red;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+    	<!-- 不限定高度的情况下，当内容过多时，高度超出 -->
+        <div class="left">
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+        </div>
+        <div class="right"></div>
+    </div>
+</body>
+
+</html>

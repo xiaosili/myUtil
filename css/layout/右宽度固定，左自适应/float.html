@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+    <title>float</title>
+    <style>
+    html * {
+        margin: 0;
+        padding: 0;
+    }
+
+    div {
+        min-height: 200px;
+    }
+
+    .right {
+        width: 100px;
+        float: right;
+        background-color: red;
+    }
+
+    .left {
+        overflow: auto;
+        background-color: yellow;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="right"></div>
+    <!-- 不限定高度的情况下，当内容过多时，高度超出 -->
+    <div class="left">
+        <p>111</p>
+        <p>111</p>
+        <p>111</p>
+        <p>111</p>
+        <p>111</p>
+        <p>111</p>
+        <p>111</p>
+        <p>111</p>
+        <p>111</p>
+        <p>111</p>
+        <p>111</p>
+    </div>
+</body>
+
+</html>

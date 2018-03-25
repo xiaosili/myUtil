@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+    <title>flex</title>
+    <style>
+    html * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .wrap {
+        display: flex;
+    }
+
+    .wrap div {
+        min-height: 200px;
+    }
+
+    .left {
+        flex: 1;
+        background-color: yellow;
+    }
+
+    .right {
+        width: 100px;
+        background-color: red;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+    	<!-- 不限定高度的情况下，当内容过多时，高度也自适应 -->
+        <div class="left">
+        	<p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+            <p>111</p>
+        </div>
+        <div class="right"></div>
+    </div>
+</body>
+
+</html>
