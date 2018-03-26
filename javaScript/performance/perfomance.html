@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>性能优化</title>
+    <!-- <script src="./defer1.js" charset="utf-8" defer></script>
+    <script src="./defer2.js" charset="utf-8" defer></script> -->
+    <script src="./async1.js" charset="utf-8" async></script>
+    <script src="./async2.js" charset="utf-8" async></script>
+</head>
+
+<body>
+    <div class="">
+        test
+    </div>
+    <script>
+    console.log('write');
+    document.write('<span>write</span>');
+    </script>
+    <script>
+    for (var i = 0; i < 200000; i++) {
+        if (i % 20000 === 0) {
+            console.log(i);
+        }
+    }
+    </script>
+    <pre>
+提升页面性能的方法有哪些？
+1，资源压缩合并，减少HTTP请求
+2，非核心代码异步加载
+3，利用浏览器缓存(缓存：资源文件在浏览器中存在的备份／副本)
+4，使用CDN（加速资源，网络优化，使浏览器快速到达服务器把资源下载下来，因为首次加载缓存不起作用）
+5，预解析DNS（涉及多个页面时很有用）
+<meta http-equiv="x-dns-prefetch-control" content="on" />（页面中很多a标签，高级浏览器中默认打开dns预解析的，但是如果是https协议，很多浏览器是默认关闭dns预解析的
+这句话强制打开dns预解析）
+<link rel="dns-prefetch" href="host_name_to_prefetch.com" />
+
+1，异步加载的方式
+1）动态脚本加载（create script，append）
+2）defer 
+3）async 
+
+2，异步加载的区别
+defer是在html解析完之后才会执行，如果是多个，按照加载的顺序依次执行
+async是在加载完之后立即执行，如果是多个，执行顺序和加载顺序无关
+
+1，缓存的分类
+1）强缓存（不用问，直接用本地）
+   Expires：Thu,21 Jan 2017 23:39:02 GMT（http头，过期时间，是绝对时间，时间是从服务端下发的，但是比较是从客户端本地比较，所以可能不准确）
+   Cache-Control:max-age=3600（http头，相对时间，单位是秒。如果二者都有，以后者为准）
+2) 协商缓存（即使本地有，也得再问问服务器）
+   Last-Modified If-Modified-Since  Last-Modified:Wed,26 Jan 2017 00:35:11 GMT（上次修改的时间，当强缓存实效了，If-Modified-Since给服务器的， Last-Modified是上次服务器下发的，但是要一起带上）
+   Etag  If-None-Match（  If-None-Match在http头中，值是Etag的值,可以理解为hash值，有可能时间过了，但是内容并没有改变。）
+      </pre>
+</body>
+
+</html>

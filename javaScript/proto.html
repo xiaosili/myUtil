@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>原型链</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    // 创建对象的三种方法
+    // 第一种方式：字面量
+    var o1 = { name: 'o1' };
+    // var o2 = new Object({name: 'o2'});
+    // 第二种方式：构造函数
+    var M = function(name) { this.name = name; };
+    var o3 = new M('o3');
+
+    // 只有实例对象有__proto__属性,函数也是对象，所以它也有这个属性
+    M.__proto__ === Function.prototype //M函数是Function构造函数的实例 true
+
+    // 第三种方式：Object.create
+    var p = { name: 'p' };
+    var o4 = Object.create(p);
+
+    // 原型对象上的属性和方法，被所有实例共享
+    M.prototype.say = function() {
+        console.log('say hi');
+    };
+    var o5 = new M('o5');
+
+    // new运算符及背后工作原理 new后跟构造函数
+    // 1，一个新对象被创建，它继承自func.prototype（构造函数的原型对象）
+    // 2，构造函数func被执行，执行的时候，相应的传参会被传入，同时上下文（this）会被指定为这个新实例
+    // 3，如果构造函数返回了一个“对象”，那么这个对象会取代整个new出来的结果，如果构造函数没有返回对象，那么new出来的结果为步骤1创建的对象
+    // Object.create(）使用原型链连接的
+    var new2 = function(func) {
+        var o = Object.create(func.prototype);
+        var k = func.call(o);
+        if (typeof k === 'object' && k != null) {
+            return k;
+        } else {
+            return o;
+        }
+    };
+
+    // new命令简化版的内部流程
+    function _new(constructor, params) {
+        // arguments对象转换为数组
+        var args = [].slice.call(arguments);
+        // 取出构造函数
+        var constructor = args.shift();
+        // 创建一个空对象，继承构造函数的prototype属性
+        var context = Object.create(constructor.prototype);
+        // 执行构造函数
+        var result = constructor.apply(context, args);
+        // 如果返回结果是对象，就直接返回，否则返回context对象
+        return (typeof result === 'object' && result != null) ? result : context;
+        console.log(result)
+    }
+    var Person = function(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    // 实例
+    var actor = _new(Person, 'zhangsan', 28);
+
+    // instanceof原理
+    // 判断实例对象的proto属性和构造函数的prototype是否同一个地址
+    // 只要在原型链上的构造函数，都会被instanceof认为是实例的构造函数
+    var o2 = new M('o3');
+    o2.__proto__ === M.prototype
+    M.prototype.__proto__ === Object.prototype
+    o2.__proto__.__proto__ === Object.prototype
+
+    o2 instanceof M //true
+    o2 instanceof Object //true
+
+    // 用constructor属性判断更严谨
+    o2.__proto__.constructor === M //true
+    o2.__proto__.constructor === Object //false
+    </script>
+    <pre>
+创建对象的三种方法
+1,字面量
+2,构造函数
+3,Object.create
+
+构造函数通过new和实例关联，构造函数的prototype对象通过constructor属性和构造函数关联
+
+原型链：
+属性查找：
+当查找一个对象的属性时，JavaScript 会向上遍历原型链，直到找到给定名称的属性为止，到查找到达原型链的顶部（也就是 Object.prototype），如果仍然没有找到指定的属性，就会返回 undefined。
+通过prototype和proto属性完成原型链的查找
+实例.__proto__   .__proto__  一直往上找，找到object.prototype为止
+    </pre>
+</body>
+
+</html>
